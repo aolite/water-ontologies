@@ -1,0 +1,6 @@
+{
+    "watch": ["ontologies", "validator"],
+    "ext": "*",
+    "ignore": ["*.test.ts"],
+    "delay": "3"
+  }
