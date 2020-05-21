@@ -85,15 +85,27 @@ dcterms:source rdf:type owl:AnnotationProperty .
 vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 
 ### hhttp://purl.org/vocab/vann/preferredNamespaceUri
-
 vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 
 #################################################################
 #    Datatypes properties
 #################################################################
 
+## http://www.opengis.net/ont/geosparql#wktLiteral
+geosp:wktLiteral rdf:type rdfs:Datatype ;
+                 rdfs:comment "A Well-known Text serialization of a geometry object."@en ;
+                 rdfs:domain geosp:Geometry;
+                 rdfs:range geosp:wktLiteral;
+                 rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                 rdfs:label "Well-known Text Literal"@en .
 
-
+## http://www.opengis.net/ont/geosparql#gmlLiteral
+geosp:gmlLiteral rdf:type rdfs:Datatype ;
+                 rdfs:domain geosp:Geometry;
+                 rdfs:range geosp:gmlLiteral;
+                 rdfs:comment "A GML serialization of a geometry object."@en ;
+                 rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                 rdfs:label "GML Literal"@en .
 
 #################################################################
 #    Object properties
@@ -106,15 +118,81 @@ s4n:regions rdf:type owl:ObjectProperty;
             rdfs:range s4n:Region;
             rdfs:label "regions"@en .
 
+### http://www.opengis.net/ont/geosparql#hasGeometry
+geosp:hasGeometry rdf:type owl:ObjectProperty;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                  rdfs:label "hasGeometry"@en .
+
+### http://www.opengis.net/ont/geosparql#sfContains
+geosp:sfContains rdf:type owl:ObjectProperty;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                  rdfs:label "sfContains"@en .
+
+### http://www.opengis.net/ont/geosparql#sfWithin
+geosp:sfWithin rdf:type owl:ObjectProperty;
+                 rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                 rdfs:label "sfWithin"@en .
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+wgs84_pos:location rdf:type owl:ObjectProperty ;
+                   rdfs:isDefinedBy <http://www.w3.org/2003/01/geo/wgs84_pos#> ;
+                   rdfs:label "location" .
+
+
 #################################################################
 #    Data properties
 #################################################################
 
+## http://www.opengis.net/ont/geosparql#asWKT
+geosp:asWKT rdf:type owl:DatatypeProperty;
+            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+            rdfs:range geosp:wktLiteral ;
+            rdfs:label "asWKT"@en .
 
+## http://www.opengis.net/ont/geosparql#asGML
+geosp:asGML rdf:type owl:DatatypeProperty;
+            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+            rdfs:range geosp:gmlLiteral ;
+            rdfs:label "asGML"@en .
 
 #################################################################
 #    Classes
 #################################################################
+
+### http://www.opengis.net/ont/geosparql#SpatialObject
+geosp:SpatialObject rdf:type owl:Class ;
+                    rdfs:subClassOf [
+                                    rdf:type owl:Restriction;
+                                    owl:onProperty geosp:sfContains;
+                                    owl:allValuesFrom geosp:SpatialObject
+                                    ],
+                                    [
+                                    rdf:type owl:Restriction;
+                                    owl:onProperty geosp:sfWithin;
+                                    owl:allValuesFrom geosp:SpatialObject
+                                    ];
+                    rdfs:comment "The class represents the top-level geometry type. This class is equivalent to the UML class GM_Object defined in ISO 19107, and it is superclass of all geometry types."@en;
+                    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+                    rdfs:label "Spatial Object"@en .
+
+### http://www.opengis.net/ont/geosparql#Geometry
+geosp:Geometry rdf:type owl:Class ;
+               rdfs:subClassOf geosp:SpatialObject;
+               rdfs:comment ""@en;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+               rdfs:label "Geometry"@en .
+
+### http://www.opengis.net/ont/geosparql#Feature
+geosp:Feature rdf:type owl:Class ;
+              rdfs:subClassOf geosp:SpatialObject,
+                              [
+                              rdf:type owl:Restriction;
+                              owl:onProperty geosp:hasGeometry;
+                              owl:allValuesFrom geosp:Geometry
+                              ];
+              rdfs:comment "This class represents the top-level feature type. This class is equivalent to GFI_Feature defined in ISO 19156:2011, and it is superclass of all feature types."@en;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+              rdfs:label "Feature"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#CaseStudy
 s4n:CaseStudy rdf:type owl:Class ;
