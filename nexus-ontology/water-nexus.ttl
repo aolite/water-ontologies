@@ -141,7 +141,6 @@ wgs84_pos:location rdf:type owl:ObjectProperty ;
 ### https://seriousgame.sim4nexus.eu/ontology#studyCase
 s4n:studyCase rdf:type owl:ObjectProperty;
               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-              rdfs:domain s4n:Goal;
               rdfs:range s4n:CaseStudy;
               rdfs:label "depends study case"@en .
 
@@ -195,37 +194,138 @@ geosp:asGML rdf:type owl:DatatypeProperty;
 
 ### https://seriousgame.sim4nexus.eu/ontology#id
 s4n:id rdf:type owl:DatatypeProperty;
-       rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+       rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
        rdfs:label "id"@en .
 ### https://seriousgame.sim4nexus.eu/ontology#name
 s4n:name rdf:type owl:DatatypeProperty;
-       rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+       rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
        rdfs:label "name"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#description
 s4n:description rdf:type owl:DatatypeProperty;
-       rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+       rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
        rdfs:label "description"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#eurbdcode
 s4n:eurbdcode rdf:type owl:DatatypeProperty;
-                rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                 rdfs:label "eurbdcode"@en .
 ### https://seriousgame.sim4nexus.eu/ontology#rdbname
 s4n:rdbname rdf:type owl:DatatypeProperty;
-              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+              rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
               rdfs:label "rdbname"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#surface
 s4n:surface rdf:type owl:DatatypeProperty;
-            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
             rdfs:label "surface"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#formula
 s4n:formula rdf:type owl:DatatypeProperty;
-            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>;
+            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
             rdfs:domain s4n:PolicyObjective;
             rdfs:label "has formula"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#level
+s4n:level rdf:type owl:DatatypeProperty;
+            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+            rdfs:domain s4n:Policy;
+            rdfs:label "has level"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#permanent
+s4n:permanent rdf:type owl:DatatypeProperty;
+          rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+          rdfs:domain s4n:Policy;
+          rdfs:label "permanent"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#appliedTimes
+s4n:appliedTimes rdf:type owl:DatatypeProperty;
+              rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+              rdfs:domain s4n:Policy;
+              rdfs:label "applied times"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#effectiveness
+s4n:effectiveness rdf:type owl:DatatypeProperty;
+                 rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                 rdfs:domain s4n:Policy;
+                 rdfs:label "effectiveness"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#pre_init_10_to_15
+s4n:pre_init_10_to_15 rdf:type owl:DatatypeProperty;
+                  rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                  rdfs:domain s4n:Policy;
+                  rdfs:label "pre_init_10_to_15"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#pre_init_15_to_20
+s4n:pre_init_15_to_20 rdf:type owl:DatatypeProperty;
+                      rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                      rdfs:domain s4n:Policy;
+                      rdfs:label "pre_init_15_to_20"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#building_time
+s4n:building_time rdf:type owl:DatatypeProperty;
+                      rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                      rdfs:domain s4n:Policy;
+                      rdfs:label "building_time"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#active_time
+s4n:active_time rdf:type owl:DatatypeProperty;
+                  rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                  rdfs:domain s4n:Policy;
+                  rdfs:label "active time"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#cost_qualitative
+s4n:cost_qualitative rdf:type owl:DatatypeProperty;
+                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                rdfs:domain s4n:Policy;
+                rdfs:label "cost qualitative"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#cost_qualitative
+s4n:cost_value rdf:type owl:DatatypeProperty;
+                     rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                     rdfs:domain s4n:Policy;
+                     rdfs:label "cost value"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#cost_generated_qualitative
+s4n:cost_generated_qualitative rdf:type owl:DatatypeProperty;
+               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+               rdfs:domain s4n:Policy;
+               rdfs:label "cost generated qualitative"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#cost_generated_value
+s4n:cost_generated_value rdf:type owl:DatatypeProperty;
+                               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                               rdfs:domain s4n:Policy;
+                               rdfs:label "Cost Generated Value"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#social_cost_qualitative
+s4n:social_cost_qualitative rdf:type owl:DatatypeProperty;
+                         rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                         rdfs:domain s4n:Policy;
+                         rdfs:label "Social Cost Qualitative"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#cost_generated_value
+s4n:cost_generated_value rdf:type owl:DatatypeProperty;
+                         rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                         rdfs:domain s4n:Policy;
+                         rdfs:label "cost generated value"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#included_in_thematic_model
+s4n:included_in_thematic_model rdf:type owl:DatatypeProperty;
+                         rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                         rdfs:domain s4n:Policy;
+                         rdfs:label "included in thematic model"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#model_input_translation
+s4n:model_input_translation rdf:type owl:DatatypeProperty;
+                               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                               rdfs:domain s4n:Policy;
+                               rdfs:label "model input translation"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#comments
+s4n:comments rdf:type owl:DatatypeProperty;
+                            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                            rdfs:label "comments"@en .
 
 #################################################################
 #    Classes
@@ -295,12 +395,7 @@ s4n:Goal rdf:type owl:Class;
 ### https://seriousgame.sim4nexus.eu/ontology#LearningGoal
 s4n:LearningGoal rdf:type owl:Class;
                  rdfs:subClassOf s4n:Goal,
-                                 s4city:KeyPerformanceIndicator,
-                                 [
-                                 rdf:type owl:Restriction;
-                                 owl:onProperty s4n:studyCase;
-                                 owl:allValuesFrom s4n:CaseStudy
-                                 ];
+                                 s4city:KeyPerformanceIndicator;
                  rdfs:comment "This type of Goal reflect the learning aspets of the game."@en;
                  rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                  rdfs:label "LearningGoal"@en.
@@ -448,6 +543,11 @@ s4n:PolicyObjective rdf:type owl:Class;
                     rdfs:subClassOf s4city:KeyPerformanceIndicatorAssessment;
                     rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                     rdfs:label "Policy Objective Use"@en.
+
+### https://seriousgame.sim4nexus.eu/ontology#Policy
+s4n:Policy rdf:type owl:Class;
+                    rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                    rdfs:label "Policy"@en.
 
 #################################################################
 #    Individuals
