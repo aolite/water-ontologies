@@ -207,6 +207,19 @@ s4syst:hasSubSystem rdf:type owl:ObjectProperty ;
                     rdfs:isDefinedBy <https://saref.etsi.org/saref4syst#> ;
                     rdfs:label "has subsystem"@en .
 
+###  https://saref.etsi.org/saref4watr#intendedFor
+s4watr:intendedFor rdf:type owl:ObjectProperty ;
+                   rdfs:label "intended for"@en .
+
+###  https://saref.etsi.org/saref4watr#isDesignedFor
+s4watr:isDesignedFor rdf:type owl:ObjectProperty ;
+                   rdfs:label "is designed for"@en .
+
+###  https://saref.etsi.org/saref#hasProperty
+saref:hasProperty rdf:type owl:ObjectProperty ;
+               rdfs:isDefinedBy <https://saref.etsi.org/saref#> ;
+               rdfs:label "has property"@en .
+
 #################################################################
 #    Data properties
 #################################################################
@@ -480,45 +493,45 @@ s4watr:Water rdf:type owl:Class;
              rdfs:label "Water"@en.
 
 ### https://seriousgame.sim4nexus.eu/ontology#Energy
-s4watr:Energy rdf:type owl:Class;
+s4n:Energy rdf:type owl:Class;
              rdfs:subClassOf s4n:NexusComponent,
                             [
                              rdf:type owl:Restriction;
                              owl:onProperty saref:hasProperty;
-                             owl:allValuesFrom s4watr:EnergyProperty
+                             owl:allValuesFrom s4n:EnergyProperty
                             ];
              rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
              rdfs:label "Energy"@en.
 
 ### https://seriousgame.sim4nexus.eu/ontology#Food
-s4watr:Food rdf:type owl:Class;
+s4n:Food rdf:type owl:Class;
               rdfs:subClassOf s4n:NexusComponent,
               [
                 rdf:type owl:Restriction;
                 owl:onProperty saref:hasProperty;
-                owl:allValuesFrom s4watr:FoodProperty
+                owl:allValuesFrom s4n:FoodProperty
               ];
               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
               rdfs:label "Food"@en.
 
 ### https://seriousgame.sim4nexus.eu/ontology#Climate
-s4watr:Climate rdf:type owl:Class;
+s4n:Climate rdf:type owl:Class;
             rdfs:subClassOf s4n:NexusComponent,
             [
              rdf:type owl:Restriction;
              owl:onProperty saref:hasProperty;
-             owl:allValuesFrom s4watr:ClimateProperty
+             owl:allValuesFrom s4n:ClimateProperty
             ];
             rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
             rdfs:label "Climate"@en.
 
 ### https://seriousgame.sim4nexus.eu/ontology#LandUse
-s4watr:LandUse rdf:type owl:Class;
+s4n:LandUse rdf:type owl:Class;
                rdfs:subClassOf s4n:NexusComponent,
                [
                 rdf:type owl:Restriction;
                 owl:onProperty saref:hasProperty;
-                owl:allValuesFrom s4watr:LandUseProperty
+                owl:allValuesFrom s4n:LandUseProperty
                ];
                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                rdfs:label "Land Use"@en.
@@ -682,17 +695,39 @@ s4n:FoodAsset rdf:type owl:Class;
                 rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                 rdfs:label "Energy Asset"@en.
 
-### https://seriousgame.sim4nexus.eu/ontology#AgricultureProduct
-s4n:AgricultureProduct rdf:type owl:Class;
-              rdfs:subClassOf s4n:FoodAsset;
+### https://seriousgame.sim4nexus.eu/ontology#AgricultureInfrastructure
+s4n:AgriculturalField rdf:type owl:Class;
+              rdfs:subClassOf s4n:FoodAsset,
+                              [
+                              rdf:type owl:Restriction;
+                              owl:onProperty s4watr:isDesignedFor;
+                              owl:allValuesFrom s4n:Plants
+                              ];
               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-              rdfs:label "Agriculture Product"@en.
+              rdfs:label "Agricultural Field"@en.
+
+### https://seriousgame.sim4nexus.eu/ontology#Plant
+s4n:Plant rdf:type owl:Class;
+                        rdfs:subClassOf saref:FeatureOfInterest;
+                        rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                        rdfs:label "Plant"@en.
 
 ### https://seriousgame.sim4nexus.eu/ontology#AnimalProduct
-s4n:AnimalProduct rdf:type owl:Class;
-                       rdfs:subClassOf s4n:FoodAsset;
+s4n:Farm rdf:type owl:Class;
+                       rdfs:subClassOf s4n:FoodAsset,
+                                        [
+                                            rdf:type owl:Restriction;
+                                            owl:onProperty s4watr:isDesignedFor;
+                                            owl:allValuesFrom s4n:Animal
+                                        ];
                        rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-                       rdfs:label "Animal Product"@en.
+                       rdfs:label "Farm"@en.
+
+### https://seriousgame.sim4nexus.eu/ontology#Animal
+s4n:Animal rdf:type owl:Class;
+          rdfs:subClassOf saref:FeatureOfInterest;
+          rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+          rdfs:label "Animal"@en.
 
 ###  https://saref.etsi.org/saref4watr#WaterAsset
 s4watr:WaterAsset rdf:type owl:Class ;
@@ -796,6 +831,85 @@ s4n:Acquifer rdf:type owl:Class;
                    rdfs:subClassOf s4watr:StorageAsset;
                    rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                    rdfs:label "Acquifer"@en.
+
+###  https://saref.etsi.org/saref4watr#WaterInfrastructure
+s4watr:WaterInfrastructure rdf:type owl:Class ;
+                           rdfs:subClassOf s4syst:System ,
+                            saref:FeatureOfInterest ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty s4watr:isDesignedFor ;
+                              owl:someValuesFrom s4watr:Water
+                            ] ;
+                           rdfs:label "Water infrastructure"@en .
+
+###  https://saref.etsi.org/saref4watr#HydroelectricPowerPlant
+s4watr:HydroelectricPowerPlant rdf:type owl:Class ;
+                             rdfs:subClassOf s4watr:WaterInfrastructure ;
+                             rdfs:label "Hydroelectric Power Plant infrastructure"@en .
+
+###  https://saref.etsi.org/saref4watr#StorageInfrastructure
+s4watr:StorageInfrastructure rdf:type owl:Class ;
+                             rdfs:subClassOf s4watr:WaterInfrastructure ;
+                             rdfs:label "Storage infrastructure"@en .
+
+###  https://saref.etsi.org/saref4watr#MonitoringInfrastructure
+s4watr:MonitoringInfrastructure rdf:type owl:Class ;
+                             rdfs:subClassOf s4watr:WaterInfrastructure ;
+                             rdfs:label "Monitoring infrastructure"@en .
+
+###  https://saref.etsi.org/saref4watr#TreatmentPlant
+s4watr:TreatmentPlant rdf:type owl:Class ;
+                      rdfs:subClassOf s4watr:WaterInfrastructure ;
+                      rdfs:label "Treatment plant"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#EnergyInfrastructure
+s4n:EnergyInfrastructure rdf:type owl:Class ;
+                           rdfs:subClassOf s4syst:System ,
+                            saref:FeatureOfInterest ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty s4watr:isDesignedFor ;
+                              owl:someValuesFrom s4n:Energy
+                            ] ;
+                           rdfs:label "Energy infrastructure"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#RenewableGenerationInfrastructure
+s4n:RenewableGenerationInfrastructure rdf:type owl:Class ;
+                            rdfs:subClassOf s4n:EnergyInfrastructure;
+                         rdfs:label "Renewable Generation infrastructure"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#NuclearPowerImport
+s4n:NuclearPowerImport rdf:type owl:Class ;
+                                      rdfs:subClassOf s4n:EnergyInfrastructure;
+                                      rdfs:label "Nuclear Power Import infrastructure"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#NuclearPowerImport
+s4n:NuclearPowerImport rdf:type owl:Class ;
+                       rdfs:subClassOf s4n:EnergyInfrastructure;
+                       rdfs:label "Nuclear Power Import infrastructure"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#DistributionSystem
+s4n:DistributionSystem rdf:type owl:Class ;
+                            rdfs:subClassOf s4syst:System ,
+                            saref:FeatureOfInterest ;
+                            rdfs:label "Distribution System"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#ProductionSystem
+s4n:ProductionSystem rdf:type owl:Class ;
+                        rdfs:subClassOf s4syst:System ,
+                        saref:FeatureOfInterest ;
+                        rdfs:label "Production System"@en .
+
+###  https://saref.etsi.org/saref4watr#WaterProperty
+s4watr:WaterProperty rdf:type owl:Class ;
+                     rdfs:subClassOf saref:Property ;
+                     rdfs:comment "Class to group those properties related to the water."@en ;
+                     rdfs:label "Water property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#EnergyProperty
+s4n:EnergyProperty rdf:type owl:Class ;
+                     rdfs:subClassOf saref:Property;
+                     rdfs:comment "Class to group those properties related to the energy."@en ;
+                     rdfs:label "Energy Property"@en .
 
 #################################################################
 #    Individuals
