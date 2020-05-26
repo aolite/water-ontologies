@@ -144,12 +144,31 @@ s4n:studyCase rdf:type owl:ObjectProperty;
               rdfs:range s4n:CaseStudy;
               rdfs:label "depends study case"@en .
 
-### https://seriousgame.sim4nexus.eu/ontology#nexus_sector
-s4n:nexus_sector rdf:type owl:ObjectProperty;
+### https://seriousgame.sim4nexus.eu/ontology#affectedBy
+s4n:affectedBy rdf:type owl:ObjectProperty;
                  owl:sameAs s4watr:intendedFor;
                  rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                  rdfs:range s4n:NexusComponent;
                  rdfs:label "refers nexus component"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#affectOther
+s4n:affectOther rdf:type owl:ObjectProperty;
+               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+               rdfs:domain s4n:NexusComponent;
+               rdfs:range s4n:NexusComponent;
+               rdfs:label "affect other nexus component"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#hasLearningGoal
+s4n:hasLearningGoal rdf:type owl:ObjectProperty;
+                    rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                    rdfs:range s4n:LearningGoal;
+                    rdfs:label "has learning goals"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#hasPolicyGoal
+s4n:hasPolicyGoal rdf:type owl:ObjectProperty;
+                    rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                    rdfs:range s4n:PolicyGoal;
+                    rdfs:label "has policy goals"@en .
 
 ### https://saref.etsi.org/saref4city#isKPIOf
 s4city:isKPIOf rdf:type owl:ObjectProperty;
@@ -220,6 +239,26 @@ saref:hasProperty rdf:type owl:ObjectProperty ;
                rdfs:isDefinedBy <https://saref.etsi.org/saref#> ;
                rdfs:label "has property"@en .
 
+###  https://seriousgame.sim4nexus.eu/ontology#hasRole
+s4n:hasRole rdf:type owl:ObjectProperty ;
+            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>; ;
+                  rdfs:range s4n:Role;
+                  rdfs:label "has role"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#contributeTo
+saref:contributeTo rdf:type owl:ObjectProperty ;
+                   rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>; ;
+                   rdfs:domain s4n:Policy;
+                   rdfs:range s4n:PolicyObjective;
+                   rdfs:label "contributes to"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#actuationOver
+saref:actuationOver rdf:type owl:ObjectProperty ;
+                   rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>; ;
+                   rdfs:domain s4n:Policy;
+                   rdfs:range saref:Measurement;
+                   rdfs:label "actuation over"@en .
+
 #################################################################
 #    Data properties
 #################################################################
@@ -243,12 +282,26 @@ s4n:id rdf:type owl:DatatypeProperty;
 ### https://seriousgame.sim4nexus.eu/ontology#name
 s4n:name rdf:type owl:DatatypeProperty;
        rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+       rdfs:range xsd:string;
        rdfs:label "name"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#shortName
+s4n:shortName rdf:type owl:DatatypeProperty;
+         rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+         rdfs:range xsd:string;
+         rdfs:label "short name"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#description
 s4n:description rdf:type owl:DatatypeProperty;
        rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+       rdfs:range xsd:string;
        rdfs:label "description"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#comment
+s4n:comment rdf:type owl:DatatypeProperty;
+                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                rdfs:range xsd:string;
+                rdfs:label "comment"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#eurbdcode
 s4n:eurbdcode rdf:type owl:DatatypeProperty;
@@ -267,8 +320,31 @@ s4n:surface rdf:type owl:DatatypeProperty;
 ### https://seriousgame.sim4nexus.eu/ontology#formula
 s4n:formula rdf:type owl:DatatypeProperty;
             rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-            rdfs:domain s4n:PolicyObjective;
             rdfs:label "has formula"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#national_formula
+s4n:national_formula rdf:type owl:DatatypeProperty;
+            rdfs:subClassOf s4n:formula;
+            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+            rdfs:label "national formula"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#regional_formula
+s4n:regional_formula rdf:type owl:DatatypeProperty;
+                     rdfs:subClassOf s4n:formula;
+                     rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                     rdfs:label "regional formula"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#national_formula_active
+s4n:national_formula_active rdf:type owl:DatatypeProperty;
+                     rdfs:subClassOf s4n:formula;
+                     rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                     rdfs:label "national formula active"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#national_formula_active
+s4n:national_formula_aggregation rdf:type owl:DatatypeProperty;
+                            rdfs:subClassOf s4n:formula;
+                            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+                            rdfs:label "national formula aggregation"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#level
 s4n:level rdf:type owl:DatatypeProperty;
@@ -306,14 +382,14 @@ s4n:pre_init_15_to_20 rdf:type owl:DatatypeProperty;
                       rdfs:domain s4n:Policy;
                       rdfs:label "pre_init_15_to_20"@en .
 
-### https://seriousgame.sim4nexus.eu/ontology#building_time
-s4n:building_time rdf:type owl:DatatypeProperty;
+### https://seriousgame.sim4nexus.eu/ontology#buildingTime
+s4n:buildingTime rdf:type owl:DatatypeProperty;
                       rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                       rdfs:domain s4n:Policy;
                       rdfs:label "building_time"@en .
 
-### https://seriousgame.sim4nexus.eu/ontology#active_time
-s4n:active_time rdf:type owl:DatatypeProperty;
+### https://seriousgame.sim4nexus.eu/ontology#activeTime
+s4n:activeTime rdf:type owl:DatatypeProperty;
                   rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                   rdfs:domain s4n:Policy;
                   rdfs:label "active time"@en .
@@ -324,7 +400,7 @@ s4n:cost_qualitative rdf:type owl:DatatypeProperty;
                 rdfs:domain s4n:Policy;
                 rdfs:label "cost qualitative"@en .
 
-### https://seriousgame.sim4nexus.eu/ontology#cost_qualitative
+### https://seriousgame.sim4nexus.eu/ontology#cost_value
 s4n:cost_value rdf:type owl:DatatypeProperty;
                      rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                      rdfs:domain s4n:Policy;
@@ -360,16 +436,10 @@ s4n:included_in_thematic_model rdf:type owl:DatatypeProperty;
                          rdfs:domain s4n:Policy;
                          rdfs:label "included in thematic model"@en .
 
-### https://seriousgame.sim4nexus.eu/ontology#model_input_translation
-s4n:model_input_translation rdf:type owl:DatatypeProperty;
+### https://seriousgame.sim4nexus.eu/ontology#image
+s4n:image rdf:type owl:DatatypeProperty;
                                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-                               rdfs:domain s4n:Policy;
-                               rdfs:label "model input translation"@en .
-
-### https://seriousgame.sim4nexus.eu/ontology#comments
-s4n:comments rdf:type owl:DatatypeProperty;
-                            rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-                            rdfs:label "comments"@en .
+                               rdfs:label "image"@en .
 
 ###  https://saref.etsi.org/saref#hasTimestamp
 saref:hasTimestamp rdf:type owl:DatatypeProperty ;
@@ -991,7 +1061,7 @@ s4n:LandUseProperty rdf:type owl:Class ;
                     rdfs:comment "Class to group those properties related to the land use."@en ;
                     rdfs:label "Land Use Property"@en .
 
-###  https://seriousgame.sim4nexus.eu/ontology#LandUseProperty
+###  https://seriousgame.sim4nexus.eu/ontology#FoodProperty
 s4n:FoodProperty rdf:type owl:Class ;
                     rdfs:subClassOf saref:Property;
                     rdfs:comment "Class to group those properties related to the food."@en ;
@@ -1007,6 +1077,28 @@ s4n:EconomicProperty rdf:type owl:Class ;
 s4n:NexusUseSector rdf:type owl:Class ;
                      rdfs:comment "Class to group those sectors related to the nexus variables."@en ;
                      rdfs:label "Nexus Use Sector"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#Actor
+s4n:Actor rdf:type owl:Class ;
+                   rdfs:comment "Class to group those actors realted to the case studies."@en ;
+                   rdfs:label "Actor"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#Actor
+s4n:Role rdf:type owl:Class ;
+          rdfs:comment "Class to group the different decision-making roles"@en ;
+          rdfs:label "Roles"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#GovernanceActor
+s4n:GovernanceActor rdf:type owl:Class ;
+                    rdfs:subClassOf s4n:Actor;
+                    rdfs:comment "Class to group those governance Actors."@en ;
+                    rdfs:label "Governance Actor"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#ScientificComitte
+s4n:ScientificComitte rdf:type owl:Class ;
+                    rdfs:subClassOf s4n:Actor;
+                    rdfs:comment "Class to group those scientific comittes."@en ;
+                    rdfs:label "Scientific Comitte"@en .
 
 #################################################################
 #    Individuals
@@ -1094,6 +1186,11 @@ s4n:GHGEmissions rdf:type owl:NamedIndividual ,
                         s4n:Emissions ;
                rdfs:label "GHG Emissions"@en .
 
+###  https://seriousgame.sim4nexus.eu/ontology#ResourceEfficiency
+s4n:ResourceEfficiency rdf:type owl:NamedIndividual ,
+                          s4n:Emissions ;
+                 rdfs:label "Resource Efficiency"@en .
+
 ###  https://seriousgame.sim4nexus.eu/ontology#CarbonSequestration
 s4n:CarbonSequestration rdf:type owl:NamedIndividual ,
                           s4n:ClimateProperty ;
@@ -1131,18 +1228,28 @@ s4n:HydropowerEnergyProduction rdf:type owl:NamedIndividual ,
 
 ##  https://seriousgame.sim4nexus.eu/ontology#GasProduction
 s4n:GasProduction rdf:type owl:NamedIndividual ,
-                           s4n:RenewableEnergyProductionFlow ;
+                           s4n:FuelsProductionFlow ;
                   rdfs:label "Gas Production"@en .
 
 ##  https://seriousgame.sim4nexus.eu/ontology#FuelWoodProduction
 s4n:FuelWoodProduction rdf:type owl:NamedIndividual ,
-                           s4n:RenewableEnergyProductionFlow ;
+                           s4n:FuelsProductionFlow ;
                   rdfs:label "Fuel Wood Production"@en .
 
 ##  https://seriousgame.sim4nexus.eu/ontology#CarbonProduction
 s4n:CarbonProduction rdf:type owl:NamedIndividual ,
-                                s4n:RenewableEnergyProductionFlow ;
+                                s4n:FuelsProductionFlow ;
                        rdfs:label "Carbon Production"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#NuclearProduction
+s4n:NuclearProduction rdf:type owl:NamedIndividual ,
+                              s4n:FuelsProductionFlow ;
+                     rdfs:label "Nuclear Production"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#BioenergyProduction
+s4n:BioenergyProduction rdf:type owl:NamedIndividual ,
+                              s4n:BiomassProductionFlow ;
+                     rdfs:label "Bioenergy Production"@en .
 
 ##  https://seriousgame.sim4nexus.eu/ontology#Agriculture
 s4n:Agriculture rdf:type owl:NamedIndividual ,
@@ -1153,6 +1260,11 @@ s4n:Agriculture rdf:type owl:NamedIndividual ,
 s4n:Industrial rdf:type owl:NamedIndividual ,
                          s4n:NexusUseSector ;
                 rdfs:label "Industrial"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Tourism
+s4n:Tourism rdf:type owl:NamedIndividual ,
+                        s4n:NexusUseSector ;
+               rdfs:label "Tourism"@en .
 
 ##  https://seriousgame.sim4nexus.eu/ontology#Domestic
 s4n:Domestic rdf:type owl:NamedIndividual ,
@@ -1199,6 +1311,11 @@ s4n:LandRecycle rdf:type owl:NamedIndividual ,
 s4n:WasteProduction rdf:type owl:NamedIndividual ,
                          s4n:LandUseProperty ;
                 rdfs:label "Waste Production"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#DegradationFlow
+s4n:DegradationFlow rdf:type owl:NamedIndividual ,
+                             s4n:LandUseProperty ;
+                    rdfs:label "Degradation Flow"@en .
 
 ##  https://seriousgame.sim4nexus.eu/ontology#Area
 s4n:Area rdf:type owl:NamedIndividual ,
@@ -1256,6 +1373,26 @@ s4n:Livestock rdf:type owl:NamedIndividual ,
                    s4n:EconomicProperty ;
               rdfs:label "Livestock"@en .
 
+##  https://seriousgame.sim4nexus.eu/ontology#Population
+s4n:Population rdf:type owl:NamedIndividual ,
+                       s4n:EconomicProperty ;
+              rdfs:label "Population"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Population
+s4n:GDP rdf:type owl:NamedIndividual ,
+                        s4n:EconomicProperty ;
+               rdfs:label "Gross Domestic Product"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Employment
+s4n:Employment rdf:type owl:NamedIndividual ,
+                 s4n:EconomicProperty ;
+        rdfs:label "Employment"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#PersonFlow
+s4n:PersonFlow rdf:type owl:NamedIndividual ,
+                        s4n:EconomicProperty ;
+               rdfs:label "Person Flow"@en .
+
 ###  https://saref.etsi.org/saref4watr#FlowPressure
 s4watr:FlowPressure rdf:type owl:NamedIndividual ,
                              s4watr:WaterFlowProperty ;
@@ -1266,6 +1403,21 @@ s4watr:FlowPressure rdf:type owl:NamedIndividual ,
 s4watr:FlowRate rdf:type owl:NamedIndividual ,
                          s4watr:WaterFlowProperty ;
                 rdfs:label "Flow rate"@en.
+
+###  https://saref.etsi.org/saref4watr#FlowRate
+s4watr:ExternalTemperature rdf:type owl:NamedIndividual ,
+                         s4watr:WaterFlowProperty ;
+                rdfs:label "External Temperature"@en.
+
+##  https://seriousgame.sim4nexus.eu/ontology#NutrientFlow
+s4n:NutrientFlow rdf:type owl:NamedIndividual ,
+                        s4watr:WaterFlowProperty ;
+               rdfs:label "Nutrient Flow"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#StormFlow
+s4n:StormFlow rdf:type owl:NamedIndividual ,
+                          s4watr:WaterFlowProperty ;
+                 rdfs:label "Storm Flow"@en .
 
 
 ###  https://saref.etsi.org/saref4watr#FlowTemperature
@@ -1285,6 +1437,16 @@ s4n:TotalSolids rdf:type owl:NamedIndividual ,
                        s4watr:AceptabilityProperty ;
               rdfs:label "Total Solids"@en .
 
+##  https://seriousgame.sim4nexus.eu/ontology#Turbidity
+s4n:Turbidity rdf:type owl:NamedIndividual ,
+                         s4watr:AceptabilityProperty ;
+                rdfs:label "Turbidity"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Salinity
+s4n:Salinity rdf:type owl:NamedIndividual ,
+                       s4watr:AceptabilityProperty ;
+              rdfs:label "Salinity"@en .
+
 ##  https://seriousgame.sim4nexus.eu/ontology#Capacity
 s4n:Capacity rdf:type owl:NamedIndividual ,
                          s4n:PhysicProperty ;
@@ -1294,3 +1456,243 @@ s4n:Capacity rdf:type owl:NamedIndividual ,
 s4n:Time rdf:type owl:NamedIndividual ,
                       s4n:PhysicProperty ;
              rdfs:label "Time"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#GrowingSeason
+s4n:GrowingSeason rdf:type owl:NamedIndividual ,
+                  s4n:PhysicProperty ;
+         rdfs:label "Growing Season"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Sulphur
+s4n:Sulphur rdf:type owl:NamedIndividual ,
+                           s4watr:ChemicalProperty ;
+                  rdfs:label "Growing Season"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#AgricultureFoodMinistry
+s4n:AgricultureFoodMinistry rdf:type owl:NamedIndividual ,
+                  s4n:GovernanceActor ;
+         rdfs:label "Ministry of Agriculture/Food"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#PlanningDevelopmentMinistry
+s4n:PlanningDevelopmentMinistry rdf:type owl:NamedIndividual ,
+                                     s4n:GovernanceActor ;
+                            rdfs:label "Ministry of Planning/Development"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EconomyTourismInfrastructureMinistry
+s4n:EconomyTourismInfrastructureMinistry rdf:type owl:NamedIndividual ,
+                                         s4n:GovernanceActor ;
+                                rdfs:label "Ministry of Economy/Tourism/Infrastructure"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#WaterManagementAuthority
+s4n:WaterManagementAuthority rdf:type owl:NamedIndividual ,
+                                      s4n:GovernanceActor ;
+                             rdfs:label "Water Management Authority"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EnergyAgency
+s4n:EnergyAgency rdf:type owl:NamedIndividual ,
+                                      s4n:GovernanceActor ;
+                             rdfs:label "Energy Agency"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EnvironmentMinistry
+s4n:EnvironmentMinistry rdf:type owl:NamedIndividual ,
+                          s4n:GovernanceActor ;
+                 rdfs:label "Ministry of Environment"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#PortAuthority
+s4n:PortAuthority rdf:type owl:NamedIndividual ,
+                                 s4n:GovernanceActor ;
+                        rdfs:label "Port Authority"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ForestAgency
+s4n:ForestAgency rdf:type owl:NamedIndividual ,
+                          s4n:GovernanceActor ;
+                 rdfs:label "Forest Agency"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Municipalities
+s4n:Municipalities rdf:type owl:NamedIndividual ,
+                          s4n:GovernanceActor ;
+                 rdfs:label "Municipalities"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#WaterCompanies
+s4n:WaterCompanies rdf:type owl:NamedIndividual ,
+                            s4n:GovernanceActor ;
+                   rdfs:label "Water Companies"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#PowerCompanies
+s4n:PowerCompanies rdf:type owl:NamedIndividual ,
+                            s4n:GovernanceActor ;
+                   rdfs:label "Power Companies"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ForestOrganizations
+s4n:ForestOrganizations rdf:type owl:NamedIndividual ,
+                            s4n:GovernanceActor ;
+                   rdfs:label "Forest Organizations"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#NGO
+s4n:NGO rdf:type owl:NamedIndividual ,
+                                 s4n:GovernanceActor ;
+                        rdfs:label "Non Guvernamental Organizations"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#PrivateSector
+s4n:PrivateSector rdf:type owl:NamedIndividual ,
+                 s4n:GovernanceActor ;
+        rdfs:label "Private Sectors"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#FarmersUnion
+s4n:FarmersUnion rdf:type owl:NamedIndividual ,
+                          s4n:GovernanceActor ;
+                 rdfs:label "Farmers Union"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#InternationalOrganizations
+s4n:InternationalOrganizations rdf:type owl:NamedIndividual ,
+                          s4n:ScientificComitte ;
+                 rdfs:label "International organisations"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#InternationalRiverBasinComitte
+s4n:InternationalRiverBasinComitte rdf:type owl:NamedIndividual ,
+                                        s4n:ScientificComitte ;
+                               rdfs:label "International RiverBasin Comitte"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#National
+s4n:National rdf:type owl:NamedIndividual ,
+                      s4n:Role ;
+             rdfs:label "National"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Regional
+s4n:Regional rdf:type owl:NamedIndividual ,
+                      s4n:Role ;
+             rdfs:label "Regional"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Local
+s4n:Local rdf:type owl:NamedIndividual ,
+                      s4n:Role ;
+             rdfs:label "Local"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#SDG
+s4n:SDG rdf:type owl:NamedIndividual ,
+                   s4n:PolicyGoal ;
+          rdfs:label "Sustainable Development Goals"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#FoodSecurity
+s4n:FoodSecurity rdf:type owl:NamedIndividual ,
+                 s4n:PolicyGoal ;
+        rdfs:label "Food Security"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#LowCarbonEconomy
+s4n:LowCarbonEconomy rdf:type owl:NamedIndividual ,
+                          s4n:PolicyGoal ;
+                 rdfs:label "Low Carbon Economy"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EnergySelfSupply
+s4n:EnergySelfSupply rdf:type owl:NamedIndividual ,
+                              s4n:PolicyGoal ;
+                     rdfs:label "Energy self-supply"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ConventialEnergyManagement
+s4n:ConventialEnergyManagement rdf:type owl:NamedIndividual ,
+                              s4n:PolicyGoal ;
+                     rdfs:label "Management of conventional energy"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EnergySourceDiversification
+s4n:EnergySourceDiversification rdf:type owl:NamedIndividual ,
+                                        s4n:PolicyGoal ;
+                               rdfs:label "Diversification of energy sources"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#RenewableEnergy
+s4n:RenewableEnergy rdf:type owl:NamedIndividual ,
+                                         s4n:PolicyGoal ;
+                                rdfs:label "Renewable energy"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Bioeconomy
+s4n:Bioeconomy rdf:type owl:NamedIndividual ,
+                             s4n:PolicyGoal ;
+                    rdfs:label "Bio-Economy"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ClimateRiskReduction
+s4n:ClimateRiskReduction rdf:type owl:NamedIndividual ,
+                        s4n:PolicyGoal ;
+               rdfs:label "Reduce climate risks"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#LandUseManagement
+s4n:LandUseManagement rdf:type owl:NamedIndividual ,
+                                  s4n:PolicyGoal ;
+                         rdfs:label "Land use management"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Employment
+s4n:Employment rdf:type owl:NamedIndividual ,
+                               s4n:PolicyGoal ;
+                      rdfs:label "Employment"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#SustainableFoodProduction
+s4n:SustainableFoodProduction rdf:type owl:NamedIndividual ,
+                        s4n:PolicyGoal ;
+               rdfs:label "Sustainble/biological food production"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#RiskManagement
+s4n:RiskManagement rdf:type owl:NamedIndividual ,
+                                       s4n:PolicyGoal ;
+                              rdfs:label "Flood/drought risk management"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#LocalHeavyStormsReduction
+s4n:LocalHeavyStormsReduction rdf:type owl:NamedIndividual ,
+                            s4n:PolicyGoal ;
+                   rdfs:label "Reduce local heavy storms"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#RiverFlowFluctuationReduction
+s4n:RiverFlowFluctuationReduction rdf:type owl:NamedIndividual ,
+                                       s4n:PolicyGoal ;
+                              rdfs:label "Reduce river flow fluctuations"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#GroundWaterQuality
+s4n:GroundWaterQuality rdf:type owl:NamedIndividual ,
+                                           s4n:PolicyGoal ;
+                                  rdfs:label "Surface and ground water quality"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#SustainableWaterWithdrawals
+s4n:SustainableWaterWithdrawals rdf:type owl:NamedIndividual ,
+                                s4n:PolicyGoal ;
+                       rdfs:label "Sustainable water withdrawals"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#Biodiversity
+s4n:Biodiversity rdf:type owl:NamedIndividual ,
+                                         s4n:PolicyGoal ;
+                                rdfs:label "Biodiversity"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ProtectNaturalAreas
+s4n:ProtectNaturalAreas rdf:type owl:NamedIndividual ,
+                          s4n:PolicyGoal ;
+                 rdfs:label "Protected nature areas"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#GreenAreas
+s4n:GreenAreas rdf:type owl:NamedIndividual ,
+                                 s4n:PolicyGoal ;
+                        rdfs:label "Green areas"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EconomicHealthAgriculture
+s4n:EconomicHealthAgriculture rdf:type owl:NamedIndividual ,
+                        s4n:PolicyGoal ;
+               rdfs:label "Economically healthy agricultural sector"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#SustainableForest
+s4n:SustainableForest rdf:type owl:NamedIndividual ,
+                                       s4n:PolicyGoal ;
+                              rdfs:label "Sustainable forests"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EconomicInvolvement
+s4n:EconomicInvolvement rdf:type owl:NamedIndividual ,
+                               s4n:PolicyGoal ;
+                      rdfs:label "Involve economic sectors in policy"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#EconomicDevelopment
+s4n:EconomicDevelopment rdf:type owl:NamedIndividual ,
+                                 s4n:PolicyGoal ;
+                        rdfs:label "Economic development"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#ImproveTouristServices
+s4n:ImproveTouristServices rdf:type owl:NamedIndividual ,
+                                 s4n:PolicyGoal ;
+                        rdfs:label "Improve tourist product/services"@en .
+
+##  https://seriousgame.sim4nexus.eu/ontology#FoodQuality
+s4n:FoodQuality rdf:type owl:NamedIndividual ,
+                                    s4n:PolicyGoal ;
+                           rdfs:label "Food Quality"@en .
