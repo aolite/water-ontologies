@@ -905,11 +905,102 @@ s4watr:WaterProperty rdf:type owl:Class ;
                      rdfs:comment "Class to group those properties related to the water."@en ;
                      rdfs:label "Water property"@en .
 
+###  https://saref.etsi.org/saref4watr#AceptabilityProperty
+s4watr:AceptabilityProperty rdf:type owl:Class ;
+                            rdfs:subClassOf s4watr:WaterProperty ;
+                            rdfs:label "Acceptability property"@en .
+
+###  https://saref.etsi.org/saref4watr#BacterialProperty
+s4watr:BacterialProperty rdf:type owl:Class ;
+                         rdfs:subClassOf s4watr:MicrobialProperty ;
+                         rdfs:label "Bacterial property"@en .
+
+###  https://saref.etsi.org/saref4watr#ChemicalProperty
+s4watr:ChemicalProperty rdf:type owl:Class ;
+                        rdfs:subClassOf s4watr:WaterProperty ;
+                        rdfs:label "ChemicalProperty"@en .
+
+###  https://saref.etsi.org/saref4watr#MicrobialProperty
+s4watr:MicrobialProperty rdf:type owl:Class ;
+                         rdfs:subClassOf s4watr:WaterProperty ;
+                         rdfs:label "Microbial property"@en .
+
+###  https://saref.etsi.org/saref4watr#WaterFlowProperty
+s4watr:WaterFlowProperty rdf:type owl:Class ;
+                         rdfs:subClassOf saref:Property, s4watr:WaterProperty ;
+                         rdfs:comment "Class to group those properties related to water flow."@en ;
+                         rdfs:label "Water flow property"@en .
+
 ###  https://seriousgame.sim4nexus.eu/ontology#EnergyProperty
 s4n:EnergyProperty rdf:type owl:Class ;
                      rdfs:subClassOf saref:Property;
                      rdfs:comment "Class to group those properties related to the energy."@en ;
                      rdfs:label "Energy Property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#EnergyConsumptionFlow
+s4n:EnergyConsumptionFlow rdf:type owl:Class ;
+                   rdfs:subClassOf s4n:EnergyProperty;
+                   rdfs:comment "Class to group those properties related to the energy consumption flows."@en ;
+                   rdfs:label "Energy Consumption Flows"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#EnergyProductionFlows
+s4n:EnergyProductionFlows rdf:type owl:Class ;
+                          rdfs:subClassOf s4n:EnergyProperty;
+                          rdfs:comment "Class to group those properties related to the energy production flows."@en ;
+                          rdfs:label "Energy Production Flows"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#RenewableEnergyProductionFlow
+s4n:RenewableEnergyProductionFlow rdf:type owl:Class ;
+                          rdfs:subClassOf s4n:EnergyProductionFlows;
+                          rdfs:comment "Class to group those properties related to the renewable energy flows."@en ;
+                          rdfs:label "Renewable Energy Production Flows"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#BiomassProduction
+s4n:BiomassProductionFlow rdf:type owl:Class ;
+                              rdfs:subClassOf s4n:EnergyProductionFlows;
+                              rdfs:comment "Class to group those properties related to the biomass production flows."@en ;
+                              rdfs:label "Biomass Production Flows"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#FuelsProduction
+s4n:FuelsProductionFlow rdf:type owl:Class ;
+                      rdfs:subClassOf s4n:EnergyProductionFlows;
+                      rdfs:comment "Class to group those properties related to the biomass production flows."@en ;
+                      rdfs:label "Fuels Production Flows"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#ClimateProperty
+s4n:ClimateProperty rdf:type owl:Class ;
+                   rdfs:subClassOf saref:Property;
+                   rdfs:comment "Class to group those properties related to the climate."@en ;
+                   rdfs:label "Climate Property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#ClimateProperty
+s4n:Emissions rdf:type owl:Class ;
+                    rdfs:subClassOf s4n:ClimateProperty, s4n:EnergyProperty;
+                    rdfs:comment "Class to group those properties related to the emissions."@en ;
+                    rdfs:label "Emissions"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#LandUseProperty
+s4n:LandUseProperty rdf:type owl:Class ;
+                    rdfs:subClassOf saref:Property;
+                    rdfs:comment "Class to group those properties related to the land use."@en ;
+                    rdfs:label "Land Use Property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#LandUseProperty
+s4n:FoodProperty rdf:type owl:Class ;
+                    rdfs:subClassOf saref:Property;
+                    rdfs:comment "Class to group those properties related to the food."@en ;
+                    rdfs:label "Food Property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#EconomicProperty
+s4n:EconomicProperty rdf:type owl:Class ;
+                 rdfs:subClassOf saref:Property;
+                 rdfs:comment "Class to group those properties related to economy."@en ;
+                 rdfs:label "Economic Property"@en .
+
+###  https://seriousgame.sim4nexus.eu/ontology#NexusUseSector
+s4n:NexusUseSector rdf:type owl:Class ;
+                     rdfs:comment "Class to group those sectors related to the nexus variables."@en ;
+                     rdfs:label "Nexus Use Sector"@en .
 
 #################################################################
 #    Individuals
