@@ -148,8 +148,12 @@ s4n:studyCase rdf:type owl:ObjectProperty;
 s4n:affectedBy rdf:type owl:ObjectProperty;
                  owl:sameAs s4watr:intendedFor;
                  rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
-                 rdfs:range s4n:NexusComponent;
-                 rdfs:label "refers nexus component"@en .
+                 rdfs:label "affected by"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#affectedBy
+s4n:affectsTo rdf:type owl:ObjectProperty;
+               rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+               rdfs:label "affected to"@en .
 
 ### https://seriousgame.sim4nexus.eu/ontology#affectOther
 s4n:affectOther rdf:type owl:ObjectProperty;
@@ -440,6 +444,11 @@ s4n:included_in_thematic_model rdf:type owl:DatatypeProperty;
 s4n:image rdf:type owl:DatatypeProperty;
                                rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
                                rdfs:label "image"@en .
+
+### https://seriousgame.sim4nexus.eu/ontology#subClass
+s4n:subClass rdf:type owl:DatatypeProperty;
+          rdfs:isDefinedBy <https://seriousgame.sim4nexus.eu/ontology#>;
+          rdfs:label "subClass"@en .
 
 ###  https://saref.etsi.org/saref#hasTimestamp
 saref:hasTimestamp rdf:type owl:DatatypeProperty ;
